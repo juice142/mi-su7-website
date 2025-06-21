@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小米汽车 - SU7 智能电动旗舰</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6700;
+            --primary-dark: #e65c00;
+            --dark: #333333;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --gray: #999999;
+            --tech-blue: #0078d7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            padding-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .outline-button {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .outline-button:hover {
+            background-color: var(--white);
+            color: var(--dark);
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .section-title p {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        .rd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .rd-item {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--white);
+        }
+        
+        .rd-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .rd-icon {
+            font-size: 50px;
+            color: var(--tech-blue);
+            margin-bottom: 20px;
+        }
+        
+        .rd-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .products {
+            background-color: var(--light);
+        }
+        
+        .product-slider {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slider-container {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .slider-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slider-slide.active {
+            opacity: 1;
+        }
+        
+        .slide-1 {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+        }
+        
+        .slide-2 {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+        }
+        
+        .slide-3 {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+        }
+        
+        .slide-content {
+            color: var(--white);
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            max-width: 500px;
+        }
+        
+        .slide-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--white);
+        }
+        
+        .company-info {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .company-text {
+            flex: 1;
+        }
+        
+        .company-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .company-stats {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .company-image {
+            flex: 1;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') center/cover;
+        }
+        
+        .services {
+            background-color: var(--light);
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .join-us {
+            background-color: var(--light);
+        }
+        
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .job-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .job-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .job-desc {
+            margin-bottom: 25px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .member-photo i {
+            font-size: 60px;
+            color: var(--gray);
+        }
+        
+        .team-member h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .team-member .position {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .company-info {
+                flex-direction: column;
+            }
+            
+            .company-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .slider-container {
+                height: 500px;
+            }
+            
+            .slide-content {
+                left: 30px;
+                bottom: 30px;
+            }
+            
+            .slide-content h3 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .hero-buttons .cta-button,
+            .hero-buttons .outline-button {
+                width: 100%;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .slider-container {
+                height: 400px;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-title,
+        .rd-item,
+        .service-card,
+        .news-card,
+        .team-member {
+            opacity: 0;
+        }
+        
+        .show {
+            animation: fadeInUp 0.8s forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">XIAOMI <span>CARS</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#rd">研发</a></li>
+                <li><a href="#products">产品展示</a></li>
+                <li><a href="#company">公司概况</a></li>
+                <li><a href="#services">售后服务</a></li>
+                <li><a href="#news">新闻与活动</a></li>
+                <li><a href="#join">招贤纳士</a></li>
+                <li><a href="#team">团队介绍</a></li>
+            </ul>
+            
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <button class="cta-button">预约试驾</button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>小米 SU7<br>重新定义智能电动车</h1>
+            <p>融合极致性能与智能科技，为您呈现未来出行的全新体验。</p>
+            <div class="hero-buttons">
+                <button class="cta-button">预约试驾</button>
+                <button class="outline-button">了解更多</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="rd">
+        <div class="container">
+            <div class="section-title">
+                <h2>科技创新</h2>
+                <p>探索小米汽车背后的研发实力与创新技术</p>
+            </div>
+            
+            <div class="rd-grid">
+                <div class="rd-item">
+                    <div class="rd-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>澎湃OS智能系统</h3>
+                    <p>专为汽车深度定制的智能操作系统，提供无缝人车交互体验，支持全场景智能互联。</p>
+                </div>
+                
+                <div class="rd-item">
+                    <div class="rd-icon">
+                        <i class="fas fa-car-battery"></i>
+                    </div>
+                    <h3>自研电池技术</h3>
+                    <p>采用CTB一体化电池技术，实现更高能量密度与安全防护，续航高达800公里。</p>
+                </div>
+                
+                <div class="rd-item">
+                    <div class="rd-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>智能驾驶系统</h3>
+                    <p>配备超级感知融合系统，拥有32个传感器，支持L3+级智能辅助驾驶功能。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>产品展示</h2>
+                <p>探索小米SU7系列产品特性与配置</p>
+            </div>
+            
+            <div class="product-slider">
+                <div class="slider-container">
+                    <div class="slider-slide slide-1 active">
+                        <div class="slide-content">
+                            <h3>小米SU7 旗舰版</h3>
+                            <p>双电机四驱，百公里加速2.78秒，续航800公里，性能与优雅的完美融合</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-slide slide-2">
+                        <div class="slide-content">
+                            <h3>极致舒适空间</h3>
+                            <p>高级Nappa真皮座椅，智能调节系统，带来超越期待的驾乘体验</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-slide slide-3">
+                        <div class="slide-content">
+                            <h3>智能互联座舱</h3>
+                            <p>16.1英寸超大HUD，全景智能玻璃车顶，沉浸式视听娱乐系统</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="company">
+        <div class="container">
+            <div class="section-title">
+                <h2>公司概况</h2>
+                <p>小米汽车，用创新驱动未来</p>
+            </div>
+            
+            <div class="company-info">
+                <div class="company-text">
+                    <h3>重新定义智能出行</h3>
+                    <p>小米汽车成立于2021年，是小米集团全资子公司，专注于智能电动汽车及相关技术的研发与制造。我们秉承"让每个人享受科技的乐趣"的品牌使命，致力于打造世界一流的智能电动汽车。</p>
+                    <p>在北京亦庄投资200亿元建设的全球智能工厂，采用高度自动化生产方式，实现"黑灯生产"，年产能30万台，将小米汽车的制造标准推向新高度。</p>
+                    
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">30亿+</div>
+                            <div>研发投入</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">800+</div>
+                            <div>专利技术</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3000+</div>
+                            <div>全球员工</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div>研发中心</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-image">
+                    <!-- 工厂图片背景 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>售后服务</h2>
+                <p>全方位客户关怀保障</p>
+            </div>
+            
+           极速快修：
+              <li>全国200+专业服务站</li>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>服务网络</h3>
+                    <p>覆盖全国200+城市的服务网点，提供专业维修保养服务</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>质保政策</h3>
+                    <p>8年或16万公里整车质保，终身免费道路救援服务</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>软件升级</h3>
+                    <p>持续OTA升级，不断优化驾驶体验和功能扩展</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news">
+        <极速快修：
+              <li>全国200+专业服务站</li>
+        <div class="container">
+            <div class="section-title">
+                <h2>新闻与活动</h2>
+                <p>最新动态与品牌活动</p>
+            </div>
+            
+            <div class="news-container">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2023年10月15日</div>
+                        <h3>小米SU7摘得"年度设计车型"大奖</h3>
+                        <p>在国际汽车设计大赛中，小米SU7凭借其创新的设计和前瞻理念荣获最高荣誉...</p>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1549399542-7e375a0d7e0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8f极速快修：
+              <li>全国200+专业服务站</li>8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2023年10月8日</div>
+                        <h3>小米汽车体验中心全国盛大开业</h3>
+                        <p>首批20家小米汽车城市展厅在北京、上海、深圳等核心城市同步开幕...</p>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1580273916550-9e3be49ed39f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2023年9月28日</div>
+                        <h3>新一代超充技术发布，5分钟充电200公里</h3>
+                        <p>小米汽车正式推出800V高压超充平台，解决电动汽车充电速度痛点...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="join-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>招贤纳士</h2>
+                <p>加入我们，共创智能出行未来</p>
+            </div>
+            
+            <div class="jobs-container">
+                <div class="job-card">
+                    <h3>智能驾驶算法工程师</h3>
+                    <div class="job-info">
+                        <span><i class="fas fa-map-marker-alt"></i> 北京</span>
+                        <span><i class="far fa-clock"></i> 全职</span>
+                    </div>
+                    <div class="job-desc">
+                        <p>负责自动驾驶感知算法的研发与优化，包括但不限于目标检测、跟踪与多传感器融合...</p>
+                    </div>
+                    <button class="cta-button">立即申请</button>
+                </div>
+                
+                <div class="job-card">
+                    <h3>汽车动力系统工程师</h3>
+                    <div class="job-info">
+                        <span><i class="fas fa-map-marker-alt"></i> 上海</span>
+                        <span><i class="far fa-clock"></i> 全职</span>
+                    </div>
+                    <div class="job-desc">
+                        <p>负责电动汽车动力系统的设计开发，包括电机、电控和电池系统的集成与优化...</p>
+                    </div>
+                    <button class="cta-button">立即申请</button>
+                </div>
+                
+                <div class="job-card">
+                    <h3>智能座舱交互设计师</h3>
+                    <div class="job-info">
+                        <span><i class="fas fa-map-marker-alt"></i> 深圳</极速快修：
+              <li>全国200+专业服务站</li>span>
+                        <span><i class="far fa-clock"></i> 全职</span>
+                    </div>
+                    <div class="job-desc">
+                        <p>负责新一代智能座舱系统的交互体验设计，创造无缝人车交互场景...</p>
+                    </div>
+                    <button class="cta-button">立即申请</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心团队</h2>
+                <p>卓越人才的完美协作</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>张峰</h3>
+                    <div class="position">CEO兼联合创始人</div>
+                    <p>前国际知名电动车企CTO，20年汽车行业经验</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>李薇</h3>
+                    <div class="position">首席技术官</div>
+                    <p>人工智能与自动驾驶专家，前全球科技巨头技术负责人</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>王健</h3>
+                    <div class="position">设计总监</div>
+                    <p>荣获多项国际设计大奖，前欧洲豪华品牌设计主管</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>陈明</h3>
+                    <div class="position">生产制造副总裁</div>
+                    <p>工业工程专家，拥有超过15年大型智能制造管理经验</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">小米汽车理念</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">小米SU7系列</a></li>
+                        <li><a href="#">充电服务</a></li>
+                        <li><a href="#">车联网服务</a></li>
+                        <li><a href="#">配件商城</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>客户支持</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">用户手册</a></li>
+                        <li><a href="#">服务中心</a></li>
+                        <li><a href="#">预约维修</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone-alt"></i> 400-100-5678</li>
+                        <li><i class="fas fa-envelope"></i> contact@mi-auto.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市大兴区亦庄经济开发区</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 小米汽车 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端导航切换
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // 滚动监听与导航高亮
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+        
+        function updateNavHighlight() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if(item.getAttribute('href').substring(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateNavHighlight);
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if(navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 轮播图功能
+        const dots = document.querySelectorAll('.slider-dot');
+        const slides = document.querySelectorAll('.slider-slide');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // 自动轮播
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+        
+        // 滚动动画
+        function checkScroll() {
+            const triggerBottom = window.innerHeight * 0.9;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                
+                if(sectionTop < triggerBottom) {
+                    section.querySelector('.section-title')?.classList.add('show');
+                    
+                    if(section.id === 'rd') {
+                        document.querySelectorAll('.rd-item').forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('show');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    if(section.id === 'services') {
+                        document.querySelectorAll('.service-card').forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('show');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    if(section.id === 'news') {
+                        document.querySelectorAll('.news-card').forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('show');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    if(section.id === 'team') {
+                        document.querySelectorAll('.team-member').forEach((member, index) => {
+                            setTimeout(() => {
+                                member.classList.add('show');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
