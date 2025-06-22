@@ -142,7 +142,7 @@
         .hero {
             height: 100vh;
             background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), 
-                        url('https://p0.pipi.cn/mmdb/25bfd6d7e7d7e3cdc0f19b15f5b90a35d8f1d.jpg?imageView2/1/w/1920/h/1080/') 
+                        url('https://i.ibb.co/4dM0XzF/su7-hero.jpg') 
                         no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -283,7 +283,7 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             height: 500px;
-            background: url('https://p0.pipi.cn/mmdb/25bfd6d7c5d5a5d1c0f19b15f5b90a35d8f1d.jpg?imageView2/1/w/1000/h/800/') center/cover;
+            background: url('https://i.ibb.co/2P9G8Qk/su7-design.jpg') center/cover;
         }
         
         /* 颜色选择器 */
@@ -410,6 +410,70 @@
             color: #333;
         }
         
+        /* 内饰部分 */
+        .interior-section {
+            background-color: #f8f8f8;
+            padding: 100px 0;
+        }
+        
+        .interior-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .interior-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            height: 500px;
+            background: url('https://i.ibb.co/m8wTp2k/su7-interior.jpg') center/cover;
+        }
+        
+        /* 科技部分 */
+        .tech-section {
+            background-color: #0f1729;
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .tech-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .tech-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            height: 500px;
+            background: url('https://i.ibb.co/XyC7dJk/su7-tech.jpg') center/cover;
+        }
+        
+        /* 安全部分 */
+        .safety-section {
+            background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+            padding: 100px 0;
+        }
+        
+        .safety-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .safety-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            height: 500px;
+            background: url('https://i.ibb.co/0KX2WYp/su7-safety.jpg') center/cover;
+        }
+        
         /* 页脚 */
         .footer {
             background-color: #111;
@@ -469,7 +533,10 @@
         /* 响应式设计 */
         @media (max-width: 992px) {
             .design-container,
-            .range-container {
+            .range-container,
+            .interior-container,
+            .tech-container,
+            .safety-container {
                 grid-template-columns: 1fr;
             }
             
@@ -477,7 +544,10 @@
                 font-size: 3rem;
             }
             
-            .design-image {
+            .design-image,
+            .interior-image,
+            .tech-image,
+            .safety-image {
                 height: 400px;
             }
         }
@@ -563,7 +633,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
-                
+                <i class="fas fa-car"></i>
                 小米<span>CARS</span>
             </a>
             
@@ -571,8 +641,9 @@
                 <li><a href="#design">设计</a></li>
                 <li><a href="#performance">性能</a></li>
                 <li><a href="#range">续航</a></li>
+                <li><a href="#interior">内饰</a></li>
+                <li><a href="#tech">科技</a></li>
                 <li><a href="#safety">安全</a></li>
-                <li><a href="#technology">科技</a></li>
             </ul>
             
             <div class="mobile-toggle">
@@ -677,7 +748,7 @@
                     <p>多种驾驶模式选择，可高度自定义调节多项参数，带来丰富多样的驾驶乐趣。</p>
                 </div>
                 
-                <div class="design-image animate" style="background: url('https://p0.pipi.cn/mmdb/25bfd6d7c5d5a5d1c0f19b15f5b90a35d8f1d.jpg?imageView2/1/w/1000/h/800/') center/cover;"></div>
+                <div class="design-image animate" style="background: url('https://i.ibb.co/7gYc3Qf/su7-performance.jpg') center/cover;"></div>
             </div>
         </div>
     </section>
@@ -725,6 +796,69 @@
                     </ul>
                     <p>支持小米超级充电站、国网充电桩、家用充电桩等多种充电方式，满足不同场景下的充电需求。</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内饰部分 -->
+    <section id="interior" class="interior-section">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>豪华内饰</h2>
+                <p>精致工艺与舒适体验的完美结合</p>
+            </div>
+            
+            <div class="interior-container">
+                <div class="design-content animate">
+                    <h3>匠心打造舒适空间</h3>
+                    <p>小米SU7内饰采用高品质Nappa真皮与环保材料，提供三种主题配色可选。座椅采用人体工学设计，支持16向电动调节、通风加热与按摩功能。</p>
+                    <p>全景天幕采用纳米镀银隔热技术，紫外线隔绝率99.9%，红外线隔绝率99.1%，让您在享受自然光的同时保持舒适温度。</p>
+                    <p>全车配备23个扬声器，支持杜比全景声，打造沉浸式音乐体验。</p>
+                </div>
+                
+                <div class="interior-image animate"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 科技部分 -->
+    <section id="tech" class="tech-section">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>智能科技</h2>
+                <p>重新定义智能驾驶体验</p>
+            </div>
+            
+            <div class="tech-container">
+                <div class="tech-image animate"></div>
+                
+                <div class="design-content animate">
+                    <h3>HyperOS智能座舱</h3>
+                    <p>小米SU7搭载全新HyperOS智能座舱系统，配备16.1英寸3K超清中控屏、56英寸HUD抬头显示和7.1英寸翻转仪表屏。</p>
+                    <p>全车支持五屏联动，可实现无缝流转的多设备协同体验。小爱同学智能语音助手支持全场景连续对话，识别率高达98%。</p>
+                    <p>搭载双NVIDIA DRIVE Orin芯片，算力达508 TOPS，支持城市NOA导航辅助驾驶功能。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安全部分 -->
+    <section id="safety" class="safety-section">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>极致安全</h2>
+                <p>全方位守护每一次出行</p>
+            </div>
+            
+            <div class="safety-container">
+                <div class="design-content animate">
+                    <h3>全方位安全防护</h3>
+                    <p>小米SU7采用一体化压铸后地板技术，整车扭转刚度高达51000N·m/deg，远超行业标准。全车配备10个安全气囊，包括行业首创的中央安全气囊。</p>
+                    <p>电池安全方面，采用"铠甲"电池包防护系统，通过16项严苛安全测试，包括1000℃高温火烧、20吨挤压测试和10米高空跌落测试。</p>
+                    <p>智能安全系统配备5个毫米波雷达、12个超声波雷达和11个高清摄像头，实现360°全方位感知。</p>
+                </div>
+                
+                <div class="safety-image animate"></div>
             </div>
         </div>
     </section>
@@ -800,7 +934,7 @@
             }, { threshold: 0.1 });
             
             // 观察需要动画的元素
-            document.querySelectorAll('.section-title, .design-content, .design-image, .spec-item, .color-selector, .range-chart').forEach(el => {
+            document.querySelectorAll('.section-title, .design-content, .design-image, .spec-item, .color-selector, .range-chart, .interior-image, .tech-image, .safety-image').forEach(el => {
                 observer.observe(el);
             });
             
@@ -835,4 +969,17 @@
                     const targetElement = document.querySelector(targetId);
                     
                     window.scrollTo({
-                       
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 移动端关闭菜单
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
